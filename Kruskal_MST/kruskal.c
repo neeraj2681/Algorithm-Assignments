@@ -154,9 +154,9 @@ int main() {
     struct edge spanning_tree[v - 1]; // to store the spanning tree
 
     int j = 0;
-    for (int i = 0; i < v - 1;) {
+    for (int i = 0; i < vertices - 1;) {
         struct edge e1 = edge_weights[j++];
-        if (do_find(e1.first) == do_find(e1.second))
+        if (do_find(e1.first)->id == do_find(e1.second)->id)
             continue;
         else {
             do_union(e1.first, e1.second);
@@ -165,10 +165,9 @@ int main() {
     }
 
     printf("Printing the spanning tree \n");
-    for (int i = 0; i < v - 1; i++) {
-        printf("%d ", spanning_tree[i].weight);
+    for (int i = 0; i < vertices - 1; i++) {
+        printf("(%d, %d) weight=%d\n", spanning_tree[i].first->id, spanning_tree[i].second->id, spanning_tree[i].weight);
     }
 
     return 0;
 }
-
